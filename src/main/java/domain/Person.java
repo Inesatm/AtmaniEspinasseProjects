@@ -1,7 +1,8 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,21 +16,21 @@ public class Person {
 	private String name;
 	private String firstName;
 	private String mail;
-	private Collection<Home> home;
+	private Collection<Home> homes;
 	private Collection<ElectronicDevice> electronicDevices;
 	private Collection<Person> friends;
 
 	public Person() {
 	}
 
-	public Person(String name, String firstName, String mail) {
-		super();
+	public Person(String name, String firstName, String mail, Collection<Home> homes,
+			Collection<ElectronicDevice> electronicDevices, Collection<Person> friends) {
 		this.name = name;
 		this.firstName = firstName;
 		this.mail = mail;
-		this.home = new ArrayList<Home>();
-		this.electronicDevices = new ArrayList<ElectronicDevice>();
-		this.friends = new ArrayList<Person>();
+		this.homes = homes;
+		this.electronicDevices = electronicDevices;
+		this.friends = friends;
 	}
 
 	@Id
@@ -68,12 +69,12 @@ public class Person {
 
 	@OneToMany
 	@JoinColumn(name = "idPerson")
-	public Collection<Home> getHome() {
-		return home;
+	public Collection<Home> getHomes() {
+		return homes;
 	}
 
-	public void setHome(Collection<Home> home) {
-		this.home = home;
+	public void sethomes(Collection<Home> home) {
+		this.homes = home;
 	}
 
 	@OneToMany

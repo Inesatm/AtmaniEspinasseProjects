@@ -1,23 +1,37 @@
 package domain;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class ElectronicDevice extends SmartDevices{
+public class ElectronicDevice extends SmartDevices {
 
-	private int idElectronicDevice;
-	
+	private Person person;
+	private int consumption;
+
 	public ElectronicDevice() {
 	}
-	@Id
-	@GeneratedValue
-	public int getIdElectronicDevice() {
-		return idElectronicDevice;
+
+	public ElectronicDevice(Person person, int consumption) {
+		this.person = person;
+		this.consumption = consumption;
 	}
-	public void setIdElectronicDevice(int idElectronicDevice) {
-		this.idElectronicDevice = idElectronicDevice;
+
+	@ManyToOne
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+	public int getConsumption() {
+		return consumption;
+	}
+
+	public void setConsumption(int consumption) {
+		this.consumption = consumption;
 	}
 
 }

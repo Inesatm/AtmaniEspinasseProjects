@@ -3,20 +3,27 @@ package domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Heater extends SmartDevices {
-	
-	private int idHeater;
-	
-	public Heater() {	}
-	@Id
-	@GeneratedValue
-	public int getIdHeater() {
-		return idHeater;
+
+	private Home home;
+
+	public Heater() {
 	}
-	public void setIdHeater(int idHeater) {
-		this.idHeater = idHeater;
+
+	public Heater(String name) {
+		super();
+	}
+
+	@ManyToOne
+	public Home getHome() {
+		return home;
+	}
+
+	public void setHome(Home home) {
+		this.home = home;
 	}
 
 }

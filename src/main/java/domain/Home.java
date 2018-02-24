@@ -2,25 +2,25 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Home {
 
 	private int idHome;
-	private int length;
-	private int nbRoom;
-	private Collection<Heater> heaters;;
+	private Person person;
+	private int size;
+	private int nbRooms;
+	private Collection<Heater> heaters;
 
-	public Home(int length, int nbRoom) {
+	public Home() {
 
-		this.length = length;
-		this.nbRoom = nbRoom;
-		this.heaters = new ArrayList<Heater>();;
+	}
+
+	public Home(int size, int nbRooms, Collection<Heater> heaters) {
+		this.size = size;
+		this.nbRooms = nbRooms;
+		this.heaters = heaters;
 	}
 
 	@Id
@@ -33,20 +33,29 @@ public class Home {
 		this.idHome = idHome;
 	}
 
-	public int getLength() {
-		return length;
+	@ManyToOne
+	public Person getPerson() {
+		return person;
 	}
 
-	public void setLength(int length) {
-		this.length = length;
+	public void setPerson(Person landlord) {
+		this.person = landlord;
 	}
 
-	public int getNbRoom() {
-		return nbRoom;
+	public int getSize() {
+		return size;
 	}
 
-	public void setNbRoom(int nbRoom) {
-		this.nbRoom = nbRoom;
+	public void setSize(int size) {
+		this.size = size;
+	}
+	
+	public int getNbRooms() {
+		return nbRooms;
+	}
+
+	public void setNbRooms(int nbRooms) {
+		this.nbRooms = nbRooms;
 	}
 
 	@OneToMany

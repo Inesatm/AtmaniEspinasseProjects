@@ -1,13 +1,37 @@
 package domain;
 
+import javax.persistence.*;
+
+@Entity
 public class SmartDevices {
-	  int consomation;
 
-	    public int getConsomation() {
-	        return consomation;
-	    }
+	private int id;
+	private String name;
 
-	    public void setConsomation(int consomation) {
-	        this.consomation = consomation;
-	    }
+	public SmartDevices() {
+	}
+
+	public SmartDevices(String name) {
+		super();
+		this.name = name;
+	}
+
+	@Id
+	@GeneratedValue
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 }
