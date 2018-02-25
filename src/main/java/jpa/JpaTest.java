@@ -43,6 +43,7 @@ public class JpaTest {
 		Collection<Heater> heaters = new ArrayList<Heater>();
 		Collection<Heater> heaters1 = new ArrayList<Heater>();
 		Collection<Person> persons = new ArrayList<Person>();
+		Collection<Person> persons1 = new ArrayList<Person>();
 		Collection<Person> friends1 = new ArrayList<Person>();
 		Collection<Person> friends2 = new ArrayList<Person>();
 		Collection<Person> friends3 = new ArrayList<Person>();
@@ -50,6 +51,8 @@ public class JpaTest {
 		Collection<Home> homes = new ArrayList<Home>();
 		Collection<Home> homes1 = new ArrayList<Home>();
 		Collection<ElectronicDevice> elecD = new ArrayList<ElectronicDevice>();
+		Collection<ElectronicDevice> elecD1 = new ArrayList<ElectronicDevice>();
+
 		
 		Heater h1 = new Heater();
 		Heater h2 = new Heater();
@@ -71,6 +74,13 @@ public class JpaTest {
 		friends3.add(p1);
 		friends3.addAll(friends1);
 		friends4.addAll(friends3);
+		
+		p1.setFriends(friends1);
+		p2.setFriends(friends2);
+		p3.setFriends(friends3);
+		p1.setFriends(friends2);
+		p2.setFriends(friends3);
+		p3.setFriends(friends4);
 		
 		// Homes
 		Home home1 = new Home("Mirabeau", 555, 4, heaters, friends4);
@@ -100,7 +110,14 @@ public class JpaTest {
 		
 		
 		
-		elecD.add(elec);
+		elecD.add(ed1);
+		elecD.add(ed4);
+		elecD.add(ed5);
+		elecD.add(ed6);
+
+		elecD1.add(ed2);
+		elecD1.add(ed3);
+
 		homes.add(home1);
 		homes1.add(home2);
 		
@@ -108,14 +125,43 @@ public class JpaTest {
 		heaters.add(heater2);
 		heaters1.add(heater3);
 		heaters1.add(heater4);
+		
+		p1.setDevices(elecD);
+		p2.setDevices(elecD1);
+		p3.setDevices(elecD1);
+		p4.setDevices(elecD);
 
+		persons.add(p1);
+		persons.add(p2);
+		persons1.add(p3);
+		persons1.add(p4);
+		
+		heater1.setHome(home1);
+		heater2.setHome(home1);
+		
+		heater1.setHome(home2);
+		heater2.setHome(home2);
+		heater3.setHome(home2);
+		heater4.setHome(home2);
 
+		
+		p1.sethomes(homes);
+		p2.sethomes(homes1);
+		p3.sethomes(homes1);
+		p4.sethomes(homes);
 
+		home1.setPersons(persons);
+		home2.setPersons(persons1);
 		
 		manager.persist(p1);
 		manager.persist(p2);
 		manager.persist(p3);
 		manager.persist(p4);
+
+		
+
+		
+
  
 
 
