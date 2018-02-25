@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 public class ElectronicDevice {
 
 	private String name;
-	private int idED;
+	private long id;
 	private int consumption;
 	private Person person;
 
@@ -20,27 +20,28 @@ public class ElectronicDevice {
 
 	public ElectronicDevice(String name, int consumption, Person person) {
 		this.name = name;
-		this.idED = idED;
 		this.consumption = consumption;
 		this.person = person;
+	}
+	
+
+
+	@Id
+	@GeneratedValue
+	public long getId() {
+		return id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 	public String getName() {
 		return name;
 	}
 	
-	public void setNom(String name) {
+	public void setName(String name) {
 		this.name = name;
-	}
-
-	@Id
-	@GeneratedValue
-	public int getIdED() {
-		return idED;
-	}
-	
-	public void setId(int idED) {
-		this.idED = idED;
 	}
 
 

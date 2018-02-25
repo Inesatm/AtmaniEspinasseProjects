@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.*;
 
+import org.hibernate.loader.CollectionAliases;
 
 @Entity
 public class Home {
@@ -80,12 +81,9 @@ public class Home {
 		this.heaters = heaters;
 	}
 	
-	public void addHeater(Heater heater) {
-		heater.setHome(this);
-		heaters.add(heater);
-	}
+
 	
-	@ManyToMany(mappedBy = "home")
+	@ManyToMany
 	public Collection<Person> getPersons() {
 		return persons;
 	}

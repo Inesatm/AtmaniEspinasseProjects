@@ -10,7 +10,7 @@ public class Heater  {
 
 	private Home home;
 	private String room;
-	private int idHeater;
+	private int id;
 	private int consumption;
 
 	public Heater() {
@@ -22,31 +22,16 @@ public class Heater  {
         this.consumption = consumption;
     }
 
-	@ManyToOne
-	public Home getHome() {
-		return home;
-	}
 
-	public void setHome(Home home) {
-		this.home = home;
-	}
-	
-	public String getRoom() {
-		return room;
-	}
-	
-	public void setNom(String room) {
-		this.room = room;
-	}
 	
 	@Id
 	@GeneratedValue
-	public int getIdHeater() {
-		return idHeater;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdHeater(int idHeater) {
-		this.idHeater = idHeater;
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public int getConsumption() {
@@ -55,6 +40,25 @@ public class Heater  {
 
 	public void setConsumption(int consumption) {
 		this.consumption = consumption;
+	}
+
+	
+	public String getRoom() {
+		return room;
+	}
+	
+	public void setRoom(String room) {
+		this.room = room;
+	}
+	
+	
+	@ManyToOne
+	public Home getHome() {
+		return home;
+	}
+
+	public void setHome(Home home) {
+		this.home = home;
 	}
 
 }

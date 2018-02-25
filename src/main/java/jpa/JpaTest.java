@@ -59,7 +59,6 @@ public class JpaTest {
 
 		heaters.add(h1);
 		heaters1.add(h2);
-		ElectronicDevice elec = new ElectronicDevice();
 		
 
 
@@ -72,9 +71,7 @@ public class JpaTest {
 		friends1.add(p2);
 		friends2.add(p1);
 		friends3.add(p1);
-		friends3.addAll(friends1);
-		friends4.addAll(friends3);
-		
+
 		p1.setFriends(friends1);
 		p2.setFriends(friends2);
 		p3.setFriends(friends3);
@@ -105,8 +102,6 @@ public class JpaTest {
 		persons.add(p3);
 		persons.add(p4);
 
-		home1.addHeater(heater1);
-		home2.addHeater(heater2);
 		
 		
 		
