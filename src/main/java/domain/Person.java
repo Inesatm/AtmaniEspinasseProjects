@@ -2,7 +2,6 @@ package domain;
 
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,7 +11,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Person {
-	private long idPerson;
+	private int idPerson;
 	private String name;
 	private String firstName;
 	private String mail;
@@ -20,16 +19,15 @@ public class Person {
 	private Collection<ElectronicDevice> electronicDevices;
 	private Collection<Person> friends;
 
+
 	public Person() {
 	}
 
-	public Person(String name, String firstName, String mail, Collection<Home> homes,
-			Collection<ElectronicDevice> electronicDevices, Collection<Person> friends) {
+	public Person(String name, String firstName, String mail, Collection<Home> homes, Collection<ElectronicDevice> electronicDevices, Collection<Person> friends) {
 		this.name = name;
 		this.firstName = firstName;
 		this.mail = mail;
-		this.homes = homes;
-		this.electronicDevices = electronicDevices;
+		this.electronicDevices =electronicDevices;
 		this.friends = friends;
 	}
 
@@ -39,7 +37,7 @@ public class Person {
 		return idPerson;
 	}
 
-	public void setIdPerson(long idPerson) {
+	public void setIdPerson(int idPerson) {
 		this.idPerson = idPerson;
 	}
 
@@ -67,8 +65,7 @@ public class Person {
 		this.mail = mail;
 	}
 
-	@OneToMany
-	@JoinColumn(name = "idPerson")
+	@OneToMany(mappedBy = "persons")
 	public Collection<Home> getHomes() {
 		return homes;
 	}
@@ -77,16 +74,16 @@ public class Person {
 		this.homes = home;
 	}
 
-	@OneToMany
-	@JoinColumn(name = "idPerson")
-	public Collection<ElectronicDevice> getElectronicDevices() {
+
+	@OneToMany(mappedBy="person")
+	public Collection<ElectronicDevice> getDevices() {
 		return electronicDevices;
 	}
 
-	public void setElectronicDevices(Collection<ElectronicDevice> electronicDevices) {
+	public void setDevices(Collection<ElectronicDevice> electronicDevices) {
 		this.electronicDevices = electronicDevices;
 	}
-
+	
 	@ManyToMany
 	public Collection<Person> getFriends() {
 		return friends;
@@ -95,5 +92,7 @@ public class Person {
 	public void setFriends(Collection<Person> friends) {
 		this.friends = friends;
 	}
+	
+
 
 }

@@ -6,16 +6,21 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Heater extends SmartDevices {
+public class Heater  {
 
 	private Home home;
+	private String room;
+	private int idHeater;
+	private int consumption;
 
 	public Heater() {
 	}
 
-	public Heater(String name) {
-		super();
-	}
+    public Heater(Home home, String room, int consumption) {
+        this.home = home;    
+        this.room = room;
+        this.consumption = consumption;
+    }
 
 	@ManyToOne
 	public Home getHome() {
@@ -24,6 +29,32 @@ public class Heater extends SmartDevices {
 
 	public void setHome(Home home) {
 		this.home = home;
+	}
+	
+	public String getRoom() {
+		return room;
+	}
+	
+	public void setNom(String room) {
+		this.room = room;
+	}
+	
+	@Id
+	@GeneratedValue
+	public int getIdHeater() {
+		return idHeater;
+	}
+
+	public void setIdHeater(int idHeater) {
+		this.idHeater = idHeater;
+	}
+	
+	public int getConsumption() {
+		return consumption;
+	}
+
+	public void setConsumption(int consumption) {
+		this.consumption = consumption;
 	}
 
 }
