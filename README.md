@@ -6,7 +6,15 @@ Binôme : Dimas ESPINASSE - Inès ATMANI
 
 ## Tuto
 
-Etape 1 : Lancer la classe JpaTest qui se trouve dans le package jpa
+Etape 1 : Lancer la classe JpaTest qui se trouve dans le package jpa afin de peupler la base de données
+
+Etape 2 : Lancer tomcat pour accéder à l'application
+```bash
+> mvn tomcat7:run
+```
+**localhost:8080/rest**
+
+Pour se connecter à une autre base de données, il faut modifier le fichier **persistence.xml**
 
 ## Liste des packages
 
@@ -18,7 +26,7 @@ Conformément au diagramme UML fourni dans l'énoncé, nous avons choisi de cré
 Contient la classe de service permettant de peupler la base mais aussi de faire des requêtes sur la base de données
 - "rest"
 Contient les routes de chaque entité du package domain ainsi que le type de requête HTTP.
-Pour accéder aux objets, il faut envoyer une requête GET de cette forme : http://localhost:8080/<objet voulu>/
+Pour accéder aux objets, il faut envoyer une requête GET de cette forme : http://localhost:8080/**objet voulu**/
 Le formulaire pour créer une personne : http://localhost:8080/index.html 
 
 - "servlet"
