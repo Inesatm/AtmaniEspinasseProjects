@@ -53,7 +53,7 @@ public class HeaterWebService {
         JSONObject jsonHeater = new JSONObject(jsonStringHeater);
         Heater heater = new Heater();
         heater.setConsumption(jsonHeater.getInt("consumption"));
-        heater.setHome(HomeDAO.getHomeById(jsonHeater.getInt("idHome")));
+        heater.setHome(HomeDAO.getHomeById(jsonHeater.getInt("id")));
         return HeaterDAO.createHeater(heater);
     }
 }

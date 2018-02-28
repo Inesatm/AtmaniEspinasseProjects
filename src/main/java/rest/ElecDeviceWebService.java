@@ -47,7 +47,7 @@ public class ElecDeviceWebService {
         JSONObject jsonEd = new JSONObject(jsonStringEd);
         ElectronicDevice ed = new ElectronicDevice();
         ed.setConsumption(jsonEd.getInt("consumption"));
-        //ed.setHome(HomeDAO.getHomeById(jsonEd.getInt("idHome")));
+        //ed.setHome(HomeDAO.getHomeById(jsonEd.getInt("id")));
         return ElectronicDeviceDAO.createElectronicDevice(ed);
     }
 }

@@ -55,7 +55,7 @@ public class PersonWebService {
         JSONObject jsonPerson = new JSONObject(jsonStringPerson);
         JSONArray jsonHomes = jsonPerson.getJSONArray("homesChecked");
         for(int i = 0; i < jsonHomes.length(); i++){
-            Home h = HomeDAO.getHomeById(jsonHomes.getJSONObject(i).getInt("idHome"));
+            Home h = HomeDAO.getHomeById(jsonHomes.getJSONObject(i).getInt("id"));
             homes.add(h);
         }
         Person person = new Person();
