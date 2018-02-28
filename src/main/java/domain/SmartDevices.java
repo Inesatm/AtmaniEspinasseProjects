@@ -1,37 +1,43 @@
 package domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-@Entity
-public class SmartDevices {
 
-	private int id;
-	private String name;
+/**
+ * @author Dimas  Espinasse - Ines Atmani
+ */ 
 
-	public SmartDevices() {
+
+public abstract class SmartDevices {
+	
+	private long id;
+	private int consumption;
+	
+	public SmartDevices(){
+		
 	}
-
-	public SmartDevices(String name) {
-		super();
-		this.name = name;
+	
+	public SmartDevices(int consumption) {
+		this.consumption = consumption;
 	}
-
-	@Id
-	@GeneratedValue
-	public int getId() {
+	
+  @Id
+  @GeneratedValue
+	public long getId() {
 		return id;
 	}
-
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
-
-	public String getName() {
-		return name;
+	public int getConsumption() {
+		return consumption;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setConsumption(int consumption) {
+		this.consumption = consumption;
 	}
-
+	
 }
+

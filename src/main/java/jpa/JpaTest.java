@@ -2,24 +2,32 @@ package jpa;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import domain.ElectronicDevice;
 import domain.Heater;
 import domain.Home;
 import domain.Person;
 
+
+/**
+ * @author Dimas  Espinasse - Ines Atmani
+ */ 
 public class JpaTest {
+	
 	private EntityManager manager;
 
 	public JpaTest(EntityManager manager) {
 		this.manager = manager;
 	}
-
+	
 	public static void main(String[] args) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
 		EntityManager manager = factory.createEntityManager();
@@ -37,159 +45,159 @@ public class JpaTest {
 		manager.close();
 		System.out.println(".. done");
 	}
-
+	
 	private void createScene() {
 		
-		Collection<Heater> heaters = new ArrayList<Heater>();
+		/* --------- Collections ---------*/
+		
+		// Electronic Devices
+		Collection<ElectronicDevice> elecD1 = new ArrayList<ElectronicDevice>();
+		Collection<ElectronicDevice> elecD2 = new ArrayList<ElectronicDevice>();
+		Collection<ElectronicDevice> elecD3 = new ArrayList<ElectronicDevice>();
+		
+		// Homes
+		Collection<Home> homes1 = new ArrayList<Home>();
+		Collection<Home> homes2 = new ArrayList<Home>();
+		
+		// Persons
+		Collection<Person> consumers1 = new ArrayList<Person>();
+		Collection<Person> consumers2 = new ArrayList<Person>();
+		
+		// Heaters
 		Collection<Heater> heaters1 = new ArrayList<Heater>();
-		Collection<Person> persons = new ArrayList<Person>();
-		Collection<Person> persons1 = new ArrayList<Person>();
+		Collection<Heater> heaters2 = new ArrayList<Heater>();
+		
+		// F.R.I.E.N.D.S
 		Collection<Person> friends1 = new ArrayList<Person>();
 		Collection<Person> friends2 = new ArrayList<Person>();
-		Collection<Person> friends3 = new ArrayList<Person>();
-		Collection<Person> friends4 = new ArrayList<Person>();
-		Collection<Home> homes = new ArrayList<Home>();
-		Collection<Home> homes1 = new ArrayList<Home>();
-		Collection<ElectronicDevice> elecD = new ArrayList<ElectronicDevice>();
-		Collection<ElectronicDevice> elecD1 = new ArrayList<ElectronicDevice>();
+		Collection<Person> friends3 = new ArrayList<Person>();	
+			
 
-		
-		Heater h1 = new Heater();
-		Heater h2 = new Heater();
-
-		heaters.add(h1);
-		heaters1.add(h2);
-		
-
-
+		/* --------- Creation ---------*/
+	
 		// Persons
-		Person p1 = new Person("Ines", "Atm", "ineskatm@gmail.com", homes, elecD, friends1);
-		Person p2 = new Person("Dimas", "Do", "dimas35000@gmail.com ", homes1, elecD, friends2);
-		Person p3 = new Person("Jane", "Doe", "janedoe@gmail.com", homes1, elecD, friends3);
-		Person p4 = new Person("Jack", "Doe", "jackdoe@gmail.com", homes, elecD, friends4);
-		// Friends
-		friends1.add(p2);
-		friends2.add(p1);
-		friends3.add(p1);
+		Person p1 = new Person("Ines", "Atm", "ineskatm@gmail.com");
+		Person p2 = new Person("Dimas", "Do", "dimas35000@gmail.com ");
+		Person p3 = new Person("Jane", "Doe", "janedoe@gmail.com");
+		Person p4 = new Person("Jack", "Doe", "jackdoe@gmail.com");
+		
+		// Electronic Devices
+		ElectronicDevice ed1 = new ElectronicDevice(p1, "Enceintes", 300);
+		ElectronicDevice ed2 = new ElectronicDevice(p2, "Ordi", 3000);
+		ElectronicDevice ed3 = new ElectronicDevice(p3, "Four", 1000);
+		ElectronicDevice ed4 = new ElectronicDevice(p4, "Frigo", 1000);
+		ElectronicDevice ed5 = new ElectronicDevice(p1, "Télé", 5550);
+		ElectronicDevice ed6 = new ElectronicDevice(p2, "Lave vaisselle", 1430);
+		
+		// Homes
+		Home home1 = new Home((long) 125.00, 7, heaters1, consumers1);
+		Home home2 = new Home((long) 55.75, 3, heaters2, consumers2);
 
+		// Heaters
+		Heater h1 = new Heater("Couloir", 100);
+		Heater h2 = new Heater("Salle de bain", 200);
+		Heater h3 = new Heater("Logia", 1000);
+		Heater h4 = new Heater("Cuisine", 489);
+
+		
+		/* --------- Ajout dans la collection ---------*/
+			
+		// Electronic Devices 
+		elecD1.add(ed1);
+		elecD1.add(ed2);
+		elecD1.add(ed3);
+		elecD2.add(ed4);
+		elecD3.add(ed5);
+		elecD3.add(ed6);	
+
+		p1.setDevices(elecD1);
+		p2.setDevices(elecD2);
+		p3.setDevices(elecD3);
+		
+		// Heaters
+		heaters1.add(h1);
+		heaters1.add(h2);
+		heaters1.add(h3);
+		heaters1.add(h4);
+		heaters2.add(h1);
+		heaters2.add(h2);
+
+		
+		// Consumers
+		consumers1.add(p1);
+		consumers1.add(p2);
+		consumers2.add(p3);	
+			
+		// Homes
+		homes1.add(home1);
+		homes2.add(home2);
+
+        h1.setHome(home1);
+        h2.setHome(home1);
+        h4.setHome(home1);
+        h3.setHome(home2);
+
+		
+		// F.R.I.E.N.D.S
+		friends1.add(p4);
+		friends1.add(p3);
+		friends2.add(p1);
+		friends2.add(p3);
+		friends3.add(p1);
+		friends3.add(p2);
+		
+		// Persons 
 		p1.setFriends(friends1);
 		p2.setFriends(friends2);
 		p3.setFriends(friends3);
-		p1.setFriends(friends2);
-		p2.setFriends(friends3);
-		p3.setFriends(friends4);
 		
-		// Homes
-		Home home1 = new Home("Mirabeau", 555, 4, heaters, friends4);
-		Home home2 = new Home("Villejean", 1588, 1, heaters1, friends2);
+		p1.setHomes(homes1);
+		p2.setHomes(homes1);
+		p3.setHomes(homes2);
 		
-		// Electronic Devices
-		ElectronicDevice ed1 = new ElectronicDevice("Enceintes", 300, p1);
-		ElectronicDevice ed2 = new ElectronicDevice("Ordi",3000, p2);
-		ElectronicDevice ed3 = new ElectronicDevice("Four",1000, p3);
-		ElectronicDevice ed4 = new ElectronicDevice("Frigo",1000, p4);
-		ElectronicDevice ed5 = new ElectronicDevice("Télé",5550, p2);
-		ElectronicDevice ed6 = new ElectronicDevice("Lave vaisselle",1430, p1);
+		home1.setConsumers(consumers1);
+		home2.setConsumers(consumers2);	
 
-		// Heaters
-		Heater heater1 = new Heater(home1, "Couloir", 100);
-		Heater heater2 = new Heater(home1, "Salle de bain", 200);
-		Heater heater3 = new Heater(home2, "Logia", 1000);
-		Heater heater4 = new Heater(home2, "Cuisine", 489);
-		
-		persons.add(p1);
-		persons.add(p2);
-		persons.add(p3);
-		persons.add(p4);
-
-		
-		
-		
-		elecD.add(ed1);
-		elecD.add(ed4);
-		elecD.add(ed5);
-		elecD.add(ed6);
-
-		elecD1.add(ed2);
-		elecD1.add(ed3);
-
-		homes.add(home1);
-		homes1.add(home2);
-		
-		heaters.add(heater1);
-		heaters.add(heater2);
-		heaters1.add(heater3);
-		heaters1.add(heater4);
-		
-		p1.setDevices(elecD);
-		p2.setDevices(elecD1);
-		p3.setDevices(elecD1);
-		p4.setDevices(elecD);
-
-		persons.add(p1);
-		persons.add(p2);
-		persons1.add(p3);
-		persons1.add(p4);
-		
-		heater1.setHome(home1);
-		heater2.setHome(home1);
-		
-		heater1.setHome(home2);
-		heater2.setHome(home2);
-		heater3.setHome(home2);
-		heater4.setHome(home2);
-
-		
-		p1.sethomes(homes);
-		p2.sethomes(homes1);
-		p3.sethomes(homes1);
-		p4.sethomes(homes);
-
-		home1.setPersons(persons);
-		home2.setPersons(persons1);
-		
 		manager.persist(p1);
 		manager.persist(p2);
 		manager.persist(p3);
 		manager.persist(p4);
-
-		
-
-		
-
- 
-
-
-
-/*		Collection<Heater> heaters = new ArrayList();
-		Collection<Heater> heaters1 = new ArrayList();
-		Collection<Person> friends1 = new ArrayList();
-		Collection<Person> friends2 = new ArrayList();
-		Collection<Person> friends3 = new ArrayList();
-		Collection<Person> friends4 = new ArrayList();
-		Collection<Home> homes = new ArrayList();
-		Collection<Home> homes1 = new ArrayList();
-		Collection<ElectronicDevice> elecD = new ArrayList();
-		
-		Heater h1 = new Heater();
-		Heater h2 = new Heater();
-		
-		heaters.add(h1);
-		heaters1.add(h2);
-		ElectronicDevice elec = new ElectronicDevice();
-
-		elecD.add(elec);
-		homes.add(home1);
-		homes1.add(home2);
-
-		friends1.add(p2);
-		friends2.add(p1);
-		friends3.add(p1);
-		friends3.addAll(friends1);
-		friends4.addAll(friends3);
-		
-		*/
-
+	
 	}
-
+	
+	private static void getAllPersons(EntityManager manager) {
+	
+		
+		Collection<Person> persons = manager.createQuery( "SELECT p FROM Person p", Person.class).getResultList();
+		
+		System.out.println("Nombre de personnes : " + persons.size());
+		
+		for (Person p : persons) {
+			System.out.println("Personne : " + persons.toString());
+		}
+	}
+	
+	public static void getPersonByName(EntityManager manager) {
+		
+		CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
+		
+		CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
+		Root<Person> from = query.from(Person.class);
+		
+		query.select(from.get("name"));
+		
+		System.out.println(manager.createQuery(query).getResultList());
+	}
+	
+	public static void getPersonById(EntityManager manager) {
+		
+		CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
+		
+		CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
+		Root<Person> from = query.from(Person.class);
+		
+		query.select(from.get("id"));
+		
+		System.out.println(manager.createQuery(query).getResultList());
+	}
 }

@@ -1,69 +1,61 @@
 package domain;
 
+
+import java.security.acl.Owner;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
+
 import javax.persistence.*;
 
-import org.hibernate.loader.CollectionAliases;
+
+/**
+ * @author Dimas  Espinasse - Ines Atmani
+ */ 
 
 @Entity
+@Table(name = "Home")
 public class Home {
-
-	private String name;
-	private int idHome;
-	private Person person;
-	private int size;
+	
+	private long id;
+	private long size;
 	private int nbRooms;
 	private Collection<Heater> heaters;
-	private Collection<Person> persons;
+	private Collection<Person> consumers;
 
 	public Home() {
 
 	}
-
-	public Home(String name, int size, int nbRooms, Collection<Heater> heaters, Collection<Person> persons) {
-		this.name = name;
+	
+	public Home(long size, int nbRooms, Collection<Heater> heaters, Collection<Person> consumers) {
 		this.size = size;
 		this.nbRooms = nbRooms;
 		this.heaters = heaters;
-		this.persons = persons;
-	}
-
-	@Id
-	@GeneratedValue
-	public int getIdHome() {
-		return idHome;
-	}
-
-	public void setIdHome(int idHome) {
-		this.idHome = idHome;
+		this.consumers = consumers;
 	}
 	
-	public String getName() {
-		return name;
+	@Id
+	@GeneratedValue
+	public long getId() {
+		return id;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setId(long id) {
+		this.id = id;
 	}
 
-	@ManyToOne
-	public Person getPerson() {
-		return person;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
-	}
-
-	public int getSize() {
+	@Basic
+	@Column(name = "Size")
+	public long getSize() {
 		return size;
 	}
-
-	public void setSize(int size) {
+	
+	public void setSize(long size) {
 		this.size = size;
 	}
 	
+	@Basic
+	@Column(name = "NbRooms")
 	public int getNbRooms() {
 		return nbRooms;
 	}
@@ -72,25 +64,32 @@ public class Home {
 		this.nbRooms = nbRooms;
 	}
 
-	@OneToMany(mappedBy = "home")
+	@OneToMany(mappedBy="home", cascade = CascadeType.PERSIST)
 	public Collection<Heater> getHeaters() {
 		return heaters;
 	}
-
+	
 	public void setHeaters(Collection<Heater> heaters) {
 		this.heaters = heaters;
 	}
-	
 
-	
 	@ManyToMany
-	public Collection<Person> getPersons() {
-		return persons;
+	public Collection<Person> getConsumers() {
+		return consumers;
 	}
-	
-	public void setPersons(Collection<Person> persons) {
-		this.persons = persons;
-	}
-	
 
+	public void setConsumers(Collection<Person> consumers) {
+		this.consumers = consumers;
+	}
+
+    @Override
+	public String toString() {
+		String result = "Home [size=" + size + ", nbRooms=" + nbRooms + "]";
+		
+		for(Heater heater : this.heaters) {
+			result += heater.toString();
+		}
+		
+		return result;
+	}
 }

@@ -1,56 +1,66 @@
 package domain;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+
+
+/**
+ * @author Dimas  Espinasse - Ines Atmani
+ */ 
 
 @Entity
+@Table(name = "Person")
 public class Person {
-	private int idPerson;
-	private String name;
+	
+	private long id;
 	private String firstName;
+	private String lastName;
 	private String mail;
 	private Collection<Home> homes;
-	private Collection<ElectronicDevice> electronicDevices;
 	private Collection<Person> friends;
-
+	private Collection<ElectronicDevice> devices;
 
 	public Person() {
-	}
 
-	public Person(String name, String firstName, String mail, Collection<Home> homes, Collection<ElectronicDevice> electronicDevices, Collection<Person> friends) {
-		this.name = name;
+	}
+	
+	public Person(String firstName, String lastName, String mail) {
 		this.firstName = firstName;
+		this.lastName = lastName;
 		this.mail = mail;
-		this.electronicDevices =electronicDevices;
-		this.friends = friends;
 	}
-
+	
+	public Person(String firstName, String lastName, String mail, Collection<ElectronicDevice> devices) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.mail = mail;
+		this.devices = devices;
+	}
+	
+	public Person(String firstName, String lastName, String mail, Collection<Home> homes, Collection<Person> friends, Collection<ElectronicDevice> devices) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.mail = mail;
+		this.homes = homes;
+		this.friends = friends;
+		this.devices = devices;
+	}
+	
 	@Id
 	@GeneratedValue
-	public int getIdPerson() {
-		return idPerson;
+	public long getId() {
+		return id;
 	}
 
-	public void setIdPerson(int idPerson) {
-		this.idPerson = idPerson;
+	public void setId(long id) {
+		this.id = id;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	
+	@Basic
+	@Column(name = "FirstName")
 	public String getFirstName() {
 		return firstName;
 	}
@@ -59,6 +69,18 @@ public class Person {
 		this.firstName = firstName;
 	}
 
+	@Basic
+	@Column(name = "lastName")
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	@Basic
+	@Column(name = "Mail")
 	public String getMail() {
 		return mail;
 	}
@@ -67,25 +89,15 @@ public class Person {
 		this.mail = mail;
 	}
 
-	@OneToMany(mappedBy = "persons")
+	@ManyToMany(mappedBy="consumers", cascade = CascadeType.PERSIST)
 	public Collection<Home> getHomes() {
 		return homes;
 	}
 
-	public void sethomes(Collection<Home> home) {
-		this.homes = home;
+	public void setHomes(Collection<Home> homes) {
+		this.homes = homes;
 	}
 
-
-	@OneToMany(mappedBy="person")
-	public Collection<ElectronicDevice> getDevices() {
-		return electronicDevices;
-	}
-
-	public void setDevices(Collection<ElectronicDevice> electronicDevices) {
-		this.electronicDevices = electronicDevices;
-	}
-	
 	@ManyToMany
 	public Collection<Person> getFriends() {
 		return friends;
@@ -94,7 +106,20 @@ public class Person {
 	public void setFriends(Collection<Person> friends) {
 		this.friends = friends;
 	}
-	
 
+	@OneToMany(mappedBy="person", cascade = CascadeType.PERSIST)
+	public Collection<ElectronicDevice> getDevices() {
+		return devices;
+	}
 
+	public void setDevices(Collection<ElectronicDevice> devices) {
+		this.devices = devices;
+	}
+
+	@Override
+	public String toString() {
+		String result = "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", mail=" + mail + "]";
+		
+		return result;
+	}
 }
