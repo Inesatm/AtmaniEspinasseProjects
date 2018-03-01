@@ -26,21 +26,21 @@ et un attribut de type personne.
 Nous avons ajouté les annotations suivantes:
 @Entity : pour définir l'entité ElectronicDevice
 @Id @GeneratedValue: Pour générer l'id automatiquement
-@ManyToOne: Une personne peut avoir une ou plusieurs équipements électroniques 
+@ManyToOne: Une personne peut avoir un ou plusieurs équipements électroniques 
 
-# La classe Heater
+## La classe Heater
 
 La classe Heater est composée des attributs suivants: id, nom, consommation et un attribut de type home.
 
 Nous avons ajouté les annotations suivantes:
 @Entity : pour définir l'entitée Heater
 @Id @GeneratedValue: Pour générer l'id automatiquement
-@ManyToOne: Une résidence peut avoir une ou plusieurs heaters. 
+@ManyToOne: Une résidence peut avoir un ou plusieurs heaters. 
 
-# La classe Home
+## La classe Home
 
 La classe Home est composée des attributs suivants : id généré automatiquemnt, nombre de pièces, la taille, collection de heaters et de personnes
-Une résidence peut avoir une ou plusieurs heaters. 
+Une résidence peut avoir un ou plusieurs heaters. 
    
 Nous avons ajouté les annotations suivantes:
 
@@ -50,7 +50,7 @@ Nous avons ajouté les annotations suivantes:
 @ManyToMany: Une maison peut avoir plusieurs personnes
 
 
-### La classe Person
+## La classe Person
 
 
 La classe Personne est composée des attributs suivants : id généré automatiquemnt, nom, prenom, email.
@@ -64,14 +64,14 @@ Nous avons ajouté les annotations suivantes:
 
 @Entity : pour définir une entité
 @Id @GeneratedValue: Pour générer l'id automatiquement
-@OneToMany (mappedBy="consumers", cascade=CascadeType.PERSIST): Pour exprimer la relation une ou plusieurs entre l'entité personne et les autres entités homes et devices.
+@OneToMany (mappedBy="consumers", cascade=CascadeType.PERSIST): Pour exprimer la relation un ou plusieurs entre l'entité personne et les autres entités homes et devices.
 
 
-# La classe SmartDevices
+## La classe SmartDevices
 Cette classe représente la classe mère pour les deux classes : Heater et ElectronicDevice. 
 public class ElectronicDevice extends SmartDevices mais ça nous a généré un problème du coup on a enlevé le "extends" dans la classe Heater et ElectronicDevice
  
-# La classe de service
+## La classe de service
 
 La classe JpaTest est composée d'un attribut de type EntityManager.
 
