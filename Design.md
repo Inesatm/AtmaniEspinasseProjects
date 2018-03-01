@@ -17,7 +17,7 @@ De plus, la classe UserInfo2 contient une méthode permettant d'ajouter une pers
 
 # Représentation des classes 
 
-# La classe ElectronicDevice 
+## La classe ElectronicDevice 
 
 La classe ElectronicDevice est composée des attribus suivants:
 Id et consommation , qui représente la consommation moyenne en Watt/h
