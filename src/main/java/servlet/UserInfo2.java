@@ -31,7 +31,7 @@ public class UserInfo2 extends HttpServlet{
             JSONObject jsonPerson = new JSONObject();
             jsonPerson.put("firstName",p.getFirstName());
             jsonPerson.put("lastName",p.getLastName());
-            jsonPerson.put("mail",p.getMail());
+            jsonPerson.put("email",p.getMail());
             jsonLstPersons.put(jsonPerson);
         }
         printer.print(jsonLstPersons);
@@ -45,10 +45,10 @@ public class UserInfo2 extends HttpServlet{
 
         String firstName = req.getParameter("firstName");
         String lastName = req.getParameter("lastName");
-        String mail = req.getParameter("mail");
+        String email = req.getParameter("email");
 
         Person p = new Person();
-        p.setMail(mail);
+        p.setMail(email);
         p.setFirstName(firstName);
         p.setLastName(lastName);
 
@@ -56,8 +56,8 @@ public class UserInfo2 extends HttpServlet{
 
         if(PersonDAO.createPerson(p)){
             jsonPerson.put("firstName",firstName);
-            jsonPerson.put("firstName",firstName);
-            jsonPerson.put("mail",mail);
+            jsonPerson.put("lastName",lastName);
+            jsonPerson.put("email",email);
             jsonPerson.put("Message","Cette personne a bien été créée !");
         } else {
             jsonPerson.put("Message","Erreur lors de la création");

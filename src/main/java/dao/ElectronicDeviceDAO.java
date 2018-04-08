@@ -12,10 +12,10 @@ import domain.ElectronicDevice;
 public class ElectronicDeviceDAO {
 	
     public static Boolean createElectronicDevice(ElectronicDevice ed) {
-        EntityTransaction tx = BaseDAO.getEntityManager().getTransaction();
+        EntityTransaction tx = BaseDAO.getManagerInstance().getTransaction();
         tx.begin();
         try {
-        	BaseDAO.getEntityManager().persist(ed);
+        	BaseDAO.getManagerInstance().persist(ed);
         } catch (Exception e) {
             return false;
         }
@@ -24,11 +24,11 @@ public class ElectronicDeviceDAO {
     }
     
     public static List<ElectronicDevice> getHeaters() {
-        return BaseDAO.getEntityManager().createQuery("Select e From ElectronicDevice e", ElectronicDevice.class).getResultList();
+        return BaseDAO.getManagerInstance().createQuery("Select e From ElectronicDevice e", ElectronicDevice.class).getResultList();
     }
 
     public static ElectronicDevice getHeaterById(int id) {
-        return BaseDAO.getEntityManager().createQuery("Select e From ElectronicDevice e where e.id=:id", ElectronicDevice.class)
+        return BaseDAO.getManagerInstance().createQuery("Select e From ElectronicDevice e where e.id=:id", ElectronicDevice.class)
                 .setParameter("id", id)
                 .getSingleResult();
     }

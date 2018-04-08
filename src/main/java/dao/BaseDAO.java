@@ -9,12 +9,13 @@ import javax.persistence.Persistence;
  */ 
 
 public class BaseDAO {
-	//private static final String PERSISTENCE_UNIT_NAME = "Test";
-	static EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
 
-	public static EntityManager getEntityManager() {
-	      return factory.createEntityManager();
-	} 
+    private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
+    private static EntityManager MANAGER = factory.createEntityManager();
+
+    public static EntityManager getManagerInstance() {
+        return MANAGER;
+    }
 
 }
 

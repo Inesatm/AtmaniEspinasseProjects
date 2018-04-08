@@ -13,10 +13,10 @@ import domain.Person;
 public class PersonDAO {
 	
     public static Boolean createPerson(Person person){
-        EntityTransaction tx = BaseDAO.getEntityManager().getTransaction();
+        EntityTransaction tx = BaseDAO.getManagerInstance().getTransaction();
         tx.begin();
         try {
-        	BaseDAO.getEntityManager().persist(person);
+        	BaseDAO.getManagerInstance().persist(person);
         } catch (Exception e) {
             return false;
         }
@@ -26,11 +26,11 @@ public class PersonDAO {
     
     
     public static List<Person> getPersons(){
-        return BaseDAO.getEntityManager().createQuery("Select p From Person p", Person.class).getResultList();
+        return BaseDAO.getManagerInstance().createQuery("Select p From Person p", Person.class).getResultList();
     }
 
     public static Person getPersonById(int id){
-        return BaseDAO.getEntityManager().createQuery("Select p From Person p where p.id=:id", Person.class)
+        return BaseDAO.getManagerInstance().createQuery("Select p From Person p where p.id=:id", Person.class)
                 .setParameter("id", id)
                 .getSingleResult();
     }

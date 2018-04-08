@@ -13,10 +13,10 @@ import domain.Heater;
 public class HeaterDAO {
 	
     public static Boolean createHeater(Heater heater) {
-        EntityTransaction tx = BaseDAO.getEntityManager().getTransaction();
+        EntityTransaction tx = BaseDAO.getManagerInstance().getTransaction();
         tx.begin();
         try {
-            BaseDAO.getEntityManager().persist(heater);
+            BaseDAO.getManagerInstance().persist(heater);
         } catch (Exception e) {
             return false;
         }
@@ -25,11 +25,11 @@ public class HeaterDAO {
     }
     
     public static List<Heater> getHeaters() {
-        return BaseDAO.getEntityManager().createQuery("Select h From Heater h", Heater.class).getResultList();
+        return BaseDAO.getManagerInstance().createQuery("Select h From Heater h", Heater.class).getResultList();
     }
 
     public static Heater getHeaterById(int id){
-        return BaseDAO.getEntityManager().createQuery("Select h From Heater h where h.id=:id", Heater.class)
+        return BaseDAO.getManagerInstance().createQuery("Select h From Heater h where h.id=:id", Heater.class)
                 .setParameter("id", id)
                 .getSingleResult();
     }

@@ -13,10 +13,10 @@ import domain.Home;
 public class HomeDAO {
 	
     public static Boolean createHome(Home home) {
-        EntityTransaction tx = BaseDAO.getEntityManager().getTransaction();
+        EntityTransaction tx = BaseDAO.getManagerInstance().getTransaction();
         tx.begin();
         try {
-        	BaseDAO.getEntityManager().persist(home);
+        	BaseDAO.getManagerInstance().persist(home);
         } catch (Exception e) {
             return false;
         }
@@ -25,11 +25,11 @@ public class HomeDAO {
     }
     
     public static List<Home> getHomes() {
-        return BaseDAO.getEntityManager().createQuery("Select h From Home h", Home.class).getResultList();
+        return BaseDAO.getManagerInstance().createQuery("Select h From Home h", Home.class).getResultList();
     }
 
     public static Home getHomeById(int id) {
-        return BaseDAO.getEntityManager().createQuery("Select h From Home h where h.id=:id", Home.class)
+        return BaseDAO.getManagerInstance().createQuery("Select h From Home h where h.id=:id", Home.class)
                 .setParameter("id", id)
                 .getSingleResult();
     }
