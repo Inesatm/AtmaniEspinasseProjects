@@ -33,10 +33,13 @@ import domain.Person;
 
 @Path("/person")
 public class PersonWebService {
+	
     @GET
+    @Path("/allPersons")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Person> getAllPersons() {
-        return PersonDAO.getPersons();
+        return  PersonDAO.getPersons();
+       
     }
 
     @GET
@@ -46,8 +49,8 @@ public class PersonWebService {
         return PersonDAO.getPersonById(id);
     }
 
-    @PUT
-    @Path("create")
+    @POST
+    @Path("/create")
     @Produces({ MediaType.APPLICATION_JSON })
     public Boolean createPerson(String jsonStringPerson)  {
         List<Home> homes = new ArrayList<Home>();

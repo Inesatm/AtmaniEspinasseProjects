@@ -1,0 +1,15 @@
+127.0.0.1 - - [09/Apr/2018:10:14:32 +0200] "POST /person/create HTTP/1.1" 404 977 http-bio-8080-exec-2 68
+127.0.0.1 - - [09/Apr/2018:10:15:31 +0200] "POST /person/create HTTP/1.1" 404 977 http-bio-8080-exec-1 86
+0:0:0:0:0:0:0:1 - - [09/Apr/2018:10:16:51 +0200] "GET /rest/ HTTP/1.1" 404 - http-bio-8080-exec-2 59
+0:0:0:0:0:0:0:1 - - [09/Apr/2018:10:20:58 +0200] "GET /index.html HTTP/1.1" 304 - http-bio-8080-exec-9 291
+0:0:0:0:0:0:0:1 - - [09/Apr/2018:10:21:14 +0200] "GET /fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1" 304 - http-bio-8080-exec-9 32
+0:0:0:0:0:0:0:1 - - [09/Apr/2018:10:21:24 +0200] "POST /person HTTP/1.1" 200 116 http-bio-8080-exec-9 6778
+0:0:0:0:0:0:0:1 - - [09/Apr/2018:10:21:25 +0200] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-8080-exec-9 2
+0:0:0:0:0:0:0:1 - - [09/Apr/2018:10:29:31 +0200] "GET /perso, HTTP/1.1" 404 963 http-bio-8080-exec-6 3
+0:0:0:0:0:0:0:1 - - [09/Apr/2018:10:29:37 +0200] "GET /person HTTP/1.1" 200 730 http-bio-8080-exec-6 646
+0:0:0:0:0:0:0:1 - - [09/Apr/2018:10:30:55 +0200] "GET /allPersons HTTP/1.1" 404 971 http-bio-8080-exec-8 2
+0:0:0:0:0:0:0:1 - - [09/Apr/2018:10:31:12 +0200] "GET /allPersons HTTP/1.1" 404 971 http-bio-8080-exec-8 2
+0:0:0:0:0:0:0:1 - - [09/Apr/2018:10:31:29 +0200] "GET / HTTP/1.1" 200 5046 http-bio-8080-exec-8 4
+0:0:0:0:0:0:0:1 - - [09/Apr/2018:10:32:32 +0200] "GET /rest/person HTTP/1.1" 405 - http-bio-8080-exec-5 7
+0:0:0:0:0:0:0:1 - - [09/Apr/2018:10:32:57 +0200] "GET /rest/person/allPersons HTTP/1.1" 200 63863 http-bio-8080-exec-5 1353
+10.188.25.23 - - [09/Apr/2018:18:24:15 +0200] "GET / HTTP/1.1" 200 5046 http-bio-8080-exec-6 153
