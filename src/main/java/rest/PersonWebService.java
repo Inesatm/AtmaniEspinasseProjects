@@ -56,11 +56,7 @@ public class PersonWebService {
         List<Home> homes = new ArrayList<Home>();
 
         JSONObject jsonPerson = new JSONObject(jsonStringPerson);
-        JSONArray jsonHomes = jsonPerson.getJSONArray("homesChecked");
-        for(int i = 0; i < jsonHomes.length(); i++){
-            Home h = HomeDAO.getHomeById(jsonHomes.getJSONObject(i).getInt("id"));
-            homes.add(h);
-        }
+
         Person person = new Person();
         person.setFirstName(jsonPerson.getString("firstName"));
         person.setLastName(jsonPerson.getString("lastName"));
